@@ -37,7 +37,7 @@ view: mx_vw_data_vw_prod_history {
     sql: {% if _user_attributes['can_see_mail'] == 'yes'%}
             ${TABLE}.APP_USER
         {% else  %}
-            MD5(${TABLE}.APP_USER)
+            '*****'
         {% endif %};;
   }
 
