@@ -34,7 +34,12 @@ view: mx_vw_data_vw_prod_history {
 
   dimension: app_user {
     type: string
-    sql: ${TABLE}.APP_USER ;;
+    sql: {% if _user_attributes['can_see_mail'] == 'yes'%}
+            ${TABLE}.APP_USER
+        {% else  %}
+            MD5(${TABLE}.APP_USER)
+        {% endif %}
+    ;;
   }
 
   dimension: arr_persons {
