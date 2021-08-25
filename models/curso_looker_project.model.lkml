@@ -21,7 +21,7 @@ explore: source_dt {}
 
 explore: native_derived_table {
   sql_always_where: {% if _user_attributes['can_see_mail'] == 'yes'%}
-                      ${resort_id} == '3406'
+                      ${resort_id} = '3406'
                     {% endif %};;
 }
 
