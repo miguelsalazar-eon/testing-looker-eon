@@ -38,8 +38,7 @@ view: mx_vw_data_vw_prod_history {
             ${TABLE}.APP_USER
         {% else  %}
             MD5(${TABLE}.APP_USER)
-        {% endif %}
-    ;;
+        {% endif %};;
   }
 
   dimension: arr_persons {
