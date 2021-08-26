@@ -118,6 +118,7 @@ view: source_dt {
         {% endif %};;
   }
 
+   ## metrica dinamica ##
   parameter: measure_type {
     suggestions: ["sum","average","max"]
   }
@@ -146,14 +147,3 @@ view: source_dt {
           else NULL end;;
   }
 }
-
-
-    # sql:  {% if measure_type._parameter_value == 'sum' %}
-    #         SUM(${TABLE}.{% parameter measure_agg %})
-    #       {% elsif  measure_type._parameter_value == 'average' %}
-    #         AVG(${TABLE}.{% parameter measure_agg %})
-    #       {% elsif  measure_type._parameter_value == 'max' %}
-    #         MAX(${TABLE}.{% parameter measure_agg %})
-    #       {% else %}
-    #         0
-    #       {% endif %} ;;
