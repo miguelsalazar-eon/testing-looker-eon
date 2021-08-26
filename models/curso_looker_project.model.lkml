@@ -9,7 +9,7 @@ access_grant: can_see_mail {
 include: "/views/**/*.view"
 
 datagroup: curso_looker_project_default_datagroup {
-  sql_trigger: SELECT MAX(CONFIRMATION_NO) FROM EON_raw.MX_VW_PROD_HISTORY;;
+  # sql_trigger: SELECT MAX(CONFIRMATION_NO) FROM EON_raw.MX_VW_PROD_HISTORY;;
   max_cache_age: "1 hour"
 }
 
