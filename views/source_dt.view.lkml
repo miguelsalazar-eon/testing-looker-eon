@@ -107,8 +107,7 @@ view: source_dt {
   }
 
   dimension: dynamic_dim {
-    # label_from_parameter: selector
-    label: "{% if selector._parameter_value == app_user %} MAIN {% else %} ELSE {% endif %}"
+    label_from_parameter: selector
     sql:
         {% if selector._parameter_value == 'app_user' %}
           ${app_user}
