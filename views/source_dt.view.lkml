@@ -108,9 +108,7 @@ view: source_dt {
 
   dimension: dynamic_dim {
     # label_from_parameter: selector
-    label: "{% if selector._parameter_value == 'app_user' %} App User Dyn
-    {% elsif  selector._parameter_value == 'resv_status' %} Reservation Status Dyn
-    {% else %} Room Category Dyn {% endif %}"
+    label: "{% if selector._parameter_value == 'app_user' %} App User Dyn {% elsif  selector._parameter_value == 'resv_status' %} Reservation Status Dyn {% else %} Room Category Dyn {% endif %}"
     sql:
         {% if selector._parameter_value == 'app_user' %}
           ${app_user}
