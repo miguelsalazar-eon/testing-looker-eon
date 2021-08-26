@@ -88,4 +88,33 @@ view: source_dt {
   measure: count {
     type: count
   }
+
+  ## dimension dinamica ##
+  parameter: selector {
+    type: unquoted
+    allowed_value: {
+      label: "App User"
+      value: "app_user"
+    }
+    allowed_value: {
+      label: "Reservation Status"
+      value: "resv_status"
+    }
+    allowed_value: {
+      label: "Room Category"
+      value: "room_category"
+    }
+  }
+
+  dimension: dynamic_dim {
+    label_from_parameter: selector
+    sql:
+        {% if selector._parameter_value == 'app_user' %}
+          ${app_user}
+        {% elsif  selector._parameter_value == 'resv_status' %}
+          ${resv_status}
+        {% else %}
+          ${room_category}
+        {% endif %};;
+  }
 }
