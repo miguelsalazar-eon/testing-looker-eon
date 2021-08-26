@@ -118,13 +118,34 @@ view: source_dt {
         {% endif %};;
   }
 
-  # dimension: dynamic_dim_alt {
-  #   type: string
-  #   sql: CASE
-  #   WHEN {% parameter selector %} = 'app_user' THEN ${app_user}
-  #   WHEN {% parameter selector %} = 'resv_status' THEN ${resv_status}
-  #   WHEN {% parameter selector %} = 'room_category' THEN ${room_category}
-  #   END
-  #   ;;
-  # }
+  parameter: measure_type {
+    suggestions: ["sum","average","max"]
+  }
+  parameter: measure_agg {
+    type: unquoted
+    allowed_value: {
+      label: "Revenue"
+      value: "total_revenue"
+    }
+    allowed_value: {
+      label: "Gross"
+      value: "total_gross"
+    }
+  }
+
+  measure: dynamic_agg {
+    type: number
+    label_from_parameter: selector
+    sql:  {% if measure_type._parameter_value == 'sum' %}
+            SUM(${TABLE}.measure_agg._parameter_value)
+          {% elsif  measure_type._parameter_value == 'average' %}
+            AVG(${TABLE}.measure_agg._parameter_value)
+          {% elsif  measure_type._parameter_value == 'max' %}
+            MAX(${TABLE}.measure_agg._parameter_value)
+          {% endif %}
+    ;;
+
+  }
+
+
 }
