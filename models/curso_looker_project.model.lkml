@@ -33,3 +33,5 @@ explore: pdt_extended {
   extends: [persistent_derived_table]
   fields: [persistent_derived_table.reservation_number,persistent_derived_table.reservation_date]
 }
+
+explore: date_picker {}
