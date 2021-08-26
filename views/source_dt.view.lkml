@@ -118,13 +118,13 @@ view: source_dt {
         {% endif %};;
   }
 
-  dimension: dynamic_dim_alt {
-    type: string
-    sql: CASE
-    WHEN {% parameter selector %} = 'app_user' THEN ${app_user}
-    WHEN {% parameter selector %} = 'resv_status' THEN ${resv_status}
-    WHEN {% parameter selector %} = 'room_category' THEN ${room_category}
-    END
-    ;;
-  }
+  # dimension: dynamic_dim_alt {
+  #   type: string
+  #   sql: CASE
+  #   WHEN {% parameter selector %} = 'app_user' THEN ${app_user}
+  #   WHEN {% parameter selector %} = 'resv_status' THEN ${resv_status}
+  #   WHEN {% parameter selector %} = 'room_category' THEN ${room_category}
+  #   END
+  #   ;;
+  # }
 }
