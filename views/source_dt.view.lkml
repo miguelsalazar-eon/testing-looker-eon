@@ -138,11 +138,11 @@ view: source_dt {
     type: number
     label_from_parameter: measure_agg
     sql:  {% if measure_type._parameter_value == 'sum' %}
-            SUM(${TABLE}.{{ measure_agg }})
+            SUM(${TABLE}.{% parameter measure_agg %})
           {% elsif  measure_type._parameter_value == 'average' %}
-            AVG(${TABLE}.{{ measure_agg }})
+            AVG(${TABLE}.{% parameter measure_agg %})
           {% else %}
-            MAX(${TABLE}.{{ measure_agg }})
+            MAX(${TABLE}.{% parameter measure_agg %})
           {% endif %} ;;
 
   }
