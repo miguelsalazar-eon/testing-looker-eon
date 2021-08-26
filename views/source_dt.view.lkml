@@ -143,6 +143,8 @@ view: source_dt {
             AVG(${TABLE}.{% parameter measure_agg %})
           {% elsif  measure_type._parameter_value == 'max' %}
             MAX(${TABLE}.{% parameter measure_agg %})
+          {% else %}
+            'Seleccione el tipo de agregacion'
           {% endif %} ;;
 
   }
