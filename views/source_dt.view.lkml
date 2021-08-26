@@ -121,6 +121,7 @@ view: source_dt {
   parameter: measure_type {
     suggestions: ["sum","average","max"]
   }
+
   parameter: measure_agg {
     type: unquoted
     allowed_value: {
@@ -135,15 +136,14 @@ view: source_dt {
 
   measure: dynamic_agg {
     type: number
-    label_from_parameter: selector
+    label_from_parameter: measure_agg
     sql:  {% if measure_type._parameter_value == 'sum' %}
-            SUM(${TABLE}.measure_agg._parameter_value)
+            SUM(${TABLE}.{{ measure_agg }})
           {% elsif  measure_type._parameter_value == 'average' %}
-            AVG(${TABLE}.measure_agg._parameter_value)
-          {% elsif  measure_type._parameter_value == 'max' %}
-            MAX(${TABLE}.measure_agg._parameter_value)
-          {% endif %}
-    ;;
+            AVG(${TABLE}.{{ measure_agg }})
+          {% else %}
+            MAX(${TABLE}.{{ measure_agg }})
+          {% endif %} ;;
 
   }
 
