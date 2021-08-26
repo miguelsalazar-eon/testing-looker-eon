@@ -21,7 +21,7 @@ view: persistent_derived_table {
       filters: [source_dt.resv_status: "DEFINITIVE, CHECKED IN"]
     }
     # datagroup_trigger: curso_looker_project_default_datagroup
-    persist_for: "10 minutes"
+    persist_for: "60 minutes"
   }
   dimension: reservation_number {
     type: string
