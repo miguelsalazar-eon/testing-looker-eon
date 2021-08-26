@@ -144,7 +144,7 @@ view: source_dt {
           {% elsif  measure_type._parameter_value == 'max' %}
             MAX(${TABLE}.{% parameter measure_agg %})
           {% else %}
-            'Seleccione el tipo de agregacion'
+            0
           {% endif %} ;;
 
   }
