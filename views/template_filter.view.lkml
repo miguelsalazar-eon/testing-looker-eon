@@ -10,7 +10,7 @@ view: date_picker {
           RESERVATION_DATE,
           RESV_STATUS
          FROM `MX_VW_PROD_HISTORY`
-         WHERE {% condition reserv_date_filter %} MX_VW_PROD_HISTORY.RESERVATION_DATE {% endcondition %}
+         WHERE {% condition reserv_date_filter %} TIMESTAMP(MX_VW_PROD_HISTORY.RESERVATION_DATE) {% endcondition %}
         ;;
     }
 
