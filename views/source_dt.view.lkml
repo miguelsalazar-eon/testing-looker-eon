@@ -137,17 +137,23 @@ view: source_dt {
   measure: dynamic_agg {
     type: number
     label_from_parameter: measure_agg
-    sql:  {% if measure_type._parameter_value == 'sum' %}
-            SUM(${TABLE}.{% parameter measure_agg %})
-          {% elsif  measure_type._parameter_value == 'average' %}
-            AVG(${TABLE}.{% parameter measure_agg %})
-          {% elsif  measure_type._parameter_value == 'max' %}
-            MAX(${TABLE}.{% parameter measure_agg %})
-          {% else %}
-            0
-          {% endif %} ;;
-
+    sql:  case when {% condition measure_type %} 'sum' {% endcondition %}
+                then sum(${TABLE}.{% parameter measure_agg %})
+               when {% condition measure_type %} 'average' {% endcondition %}
+                then avg(${TABLE}.{% parameter measure_agg %})
+               when {% condition measure_type %} 'max' {% endcondition %}
+                then max(${TABLE}.{% parameter measure_agg %})
+          else NULL end;;
   }
-
-
 }
+
+
+    # sql:  {% if measure_type._parameter_value == 'sum' %}
+    #         SUM(${TABLE}.{% parameter measure_agg %})
+    #       {% elsif  measure_type._parameter_value == 'average' %}
+    #         AVG(${TABLE}.{% parameter measure_agg %})
+    #       {% elsif  measure_type._parameter_value == 'max' %}
+    #         MAX(${TABLE}.{% parameter measure_agg %})
+    #       {% else %}
+    #         0
+    #       {% endif %} ;;
