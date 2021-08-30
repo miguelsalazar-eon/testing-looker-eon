@@ -22,6 +22,7 @@ view: date_picker {
       label: "Resort id"
       type: string
       sql: ${TABLE}.RESORT ;;
+      link: {}
     }
 
     dimension: CONFIRMATION_NO {
