@@ -42,8 +42,8 @@ explore: input_data {}
 
 explore: model_bqml {}
 
-explore: reservation_prediction {}
-
 explore: reservation_linear_reg_training {}
 
 explore: reservation_linear_reg_eval {}
+
+explore: reservation_prediction {}
