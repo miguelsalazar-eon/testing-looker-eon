@@ -1,13 +1,13 @@
-view: reservation_prediction {
+view: model_predict_automl {
   derived_table: {
     sql:
         SELECT
           *
         FROM ml.PREDICT(
-          MODEL ${model_bqml.SQL_TABLE_NAME},
+          MODEL `EON_raw.AUTOML-TEST_model`,
           (SELECT
              *
-           FROM ${input_data.SQL_TABLE_NAME}));;
+           FROM ${input_data_automl.SQL_TABLE_NAME}));;
   }
   dimension: predicted_number_of_reservations {
     label: "predicted_number_of_reservations"
@@ -33,11 +33,6 @@ view: reservation_prediction {
     label: "tipohabitacionuso_id"
     type: string
     sql: ${TABLE}.tipohabitacionuso_id ;;
-  }
-  dimension: year {
-    label: "year"
-    type: string
-    sql: ${TABLE}.year ;;
   }
   dimension: month {
     label: "month"

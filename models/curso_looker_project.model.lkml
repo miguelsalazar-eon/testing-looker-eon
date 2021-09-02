@@ -36,7 +36,7 @@ explore: pdt_extended {
 
 explore: date_picker {}
 
-### Bigquery ML Code
+### Bigquery ML lineal regresor Code
 
 explore: input_data {}
 
@@ -47,3 +47,21 @@ explore: reservation_linear_reg_training {}
 explore: reservation_linear_reg_eval {}
 
 explore: reservation_prediction {}
+
+### Bigquery ML Arima Plus Code
+
+explore: input_data_arima{}
+
+explore: model_bqml_arima {}
+
+explore: model_arima_evaluate {}
+
+explore: model_explain_forecast_arima {}
+
+### Bigquery ML AUTOML_REGRESSOR Code
+
+explore: input_data_automl{}
+
+explore: model_predict_automl {}
+
+explore: model_predict_automl_table {}

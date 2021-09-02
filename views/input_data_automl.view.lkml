@@ -1,18 +1,9 @@
-view: reservation_prediction {
+view: input_data_automl {
   derived_table: {
-    sql:
-        SELECT
+    sql:SELECT
           *
-        FROM ml.PREDICT(
-          MODEL ${model_bqml.SQL_TABLE_NAME},
-          (SELECT
-             *
-           FROM ${input_data.SQL_TABLE_NAME}));;
-  }
-  dimension: predicted_number_of_reservations {
-    label: "predicted_number_of_reservations"
-    type: number
-    # sql: ${TABLE}.predicted_number_of_reservations ;;
+          FROM EON_raw.TEST_MX_VW_NUMBER_RESERVATIONS2
+;;
   }
   dimension: number_of_reservations {
     label: "number_of_reservations"
@@ -34,11 +25,6 @@ view: reservation_prediction {
     type: string
     sql: ${TABLE}.tipohabitacionuso_id ;;
   }
-  dimension: year {
-    label: "year"
-    type: string
-    sql: ${TABLE}.year ;;
-  }
   dimension: month {
     label: "month"
     type: string
@@ -48,13 +34,5 @@ view: reservation_prediction {
     label: "category"
     type: string
     sql: ${TABLE}.category ;;
-  }
-  measure: count_reservations{
-    type: sum
-    sql: ${number_of_reservations} ;;
-  }
-  measure: count_predicted_reservations {
-    type: sum
-    sql: ${predicted_number_of_reservations} ;;
   }
 }
