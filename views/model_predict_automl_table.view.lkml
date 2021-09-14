@@ -1,18 +1,10 @@
-view: reservation_prediction {
+view: model_predict_automl_table {
   derived_table: {
-    sql:
-        SELECT
+    sql:SELECT
           *
-        FROM ml.PREDICT(
-          MODEL ${model_bqml.SQL_TABLE_NAME},
-          (SELECT
-             *
-           FROM ${input_data.SQL_TABLE_NAME}));;
-  }
-  dimension: predicted_number_of_reservations {
-    label: "predicted_number_of_reservations"
-    type: number
-    # sql: ${TABLE}.predicted_number_of_reservations ;;
+          FROM prediction_number_of_reserva_20210901021305_2021_09_01T13_30_50_929Z.predictions,
+          UNNEST(predicted_number_of_reservations)
+;;
   }
   dimension: number_of_reservations {
     label: "number_of_reservations"
@@ -34,11 +26,6 @@ view: reservation_prediction {
     type: string
     sql: ${TABLE}.tipohabitacionuso_id ;;
   }
-  dimension: year {
-    label: "year"
-    type: string
-    sql: ${TABLE}.year ;;
-  }
   dimension: month {
     label: "month"
     type: string
@@ -49,12 +36,9 @@ view: reservation_prediction {
     type: string
     sql: ${TABLE}.category ;;
   }
-  measure: count_reservations{
-    type: sum
-    sql: ${number_of_reservations} ;;
-  }
-  measure: count_predicted_reservations {
-    type: sum
-    sql: ${predicted_number_of_reservations} ;;
+  dimension: predicted_number_of_reservations_tables_value {
+    label: "predicted_number_of_reservations_tables_value"
+    type: number
+    sql: ${TABLE}.tables.value ;;
   }
 }
