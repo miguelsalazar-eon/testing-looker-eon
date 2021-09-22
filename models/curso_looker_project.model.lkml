@@ -65,3 +65,11 @@ explore: input_data_automl{}
 explore: model_predict_automl {}
 
 explore: model_predict_automl_table {}
+
+
+
+### Bigquery Linear Regression Model for budged and sales Code
+
+explore: budget_and_sales_input_data {}
+
+explore: budged_and_sales_predict_lr {}
