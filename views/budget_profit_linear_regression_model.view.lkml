@@ -4,6 +4,16 @@ view: budget_profit_linear_regression_model {
               CASE
                   WHEN processed_input = "__INTERCEPT__"
                       THEN "Constante"
+                  WHEN processed_input = "Social_Media"
+                      THEN "Redes sociales"
+                  WHEN processed_input = "Mega_Influencer"
+                      THEN "Mega"
+                  WHEN processed_input = "Macro_Influencer"
+                      THEN "Macro"
+                  WHEN processed_input = "Micro_Influencer"
+                      THEN "Micro"
+                  WHEN processed_input = "Nano_Influencer"
+                      THEN "Nano"
                   ELSE processed_input
               END AS processed_input,
               ROUND(
