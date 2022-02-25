@@ -41,4 +41,12 @@ view: model_predict_automl_table {
     type: number
     sql: ${TABLE}.tables.value ;;
   }
+  measure: count_reservations{
+    type: sum
+    sql: ${number_of_reservations} ;;
+  }
+  measure: count_predicted_reservations {
+    type: sum
+    sql: ${predicted_number_of_reservations_tables_value} ;;
+  }
 }
