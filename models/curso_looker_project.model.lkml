@@ -36,6 +36,13 @@ explore: pdt_extended {
 
 explore: date_picker {}
 
+datagroup: orders_datagroup {
+  sql_trigger: SELECT max(year) FROM EON_raw.MX_VW_PROD_HISTORY ;;
+  max_cache_age: "24 hours"
+  label: "ETL ID added"
+  description: "Triggered when new ID is added to ETL log"
+}
+
 ### Bigquery ML lineal regresor Code
 
 explore: input_data {}

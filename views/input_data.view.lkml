@@ -13,11 +13,13 @@ view: input_data {
                and reserv.BEGIN_DATE is not NULL
           GROUP BY reserv.MARKET_GROUP, reserv.RESORT, reserv.ROOM_CLASS, year, month, reserv.RATE_CATEGORY
 ;;
+    datagroup_trigger: orders_datagroup
 }
   dimension: number_of_reservations {
     label: "number_of_reservations"
     type: number
     sql: ${TABLE}.number_of_reservations ;;
+    can_filter: yes
   }
   dimension: hotel_id {
     label: "hotel_id"
@@ -38,7 +40,13 @@ view: input_data {
     label: "year"
     type: string
     sql: ${TABLE}.year ;;
-  }
+    can_filter: yes
+    drill_fields: [month]
+    action: {
+      label: "Send a Thing"
+      url: "https://example.com/ping/{{ value }}"
+      form_url: "https://example.com/ping/{{ value }}/form.json"}
+    }
   dimension: month {
     label: "month"
     type: string
