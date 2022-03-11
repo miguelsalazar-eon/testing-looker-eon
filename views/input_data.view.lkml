@@ -19,7 +19,6 @@ view: input_data {
     label: "number_of_reservations"
     type: number
     sql: ${TABLE}.number_of_reservations ;;
-    can_filter: yes
   }
   dimension: hotel_id {
     label: "hotel_id"
