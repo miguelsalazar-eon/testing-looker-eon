@@ -1,11 +1,11 @@
-view: hotel_reservation_canceled_explain_predict {
+view: hotel_cacelations_explain {
   derived_table: {
     sql: SELECT
-      IsCanceled,
-      predicted_IsCanceled,
-      probability
+        precision,
+        accuracy,
+        roc_auc
       FROM
-        ML.EXPLAIN_PREDICT(MODEL `eon-internal-bigquery.hotels_sample_dataset.MY_GBT_MODEL`,
+        ML.EVALUATE(MODEL hotels_sample_dataset.MY_GBT_MODEL,
           (
           SELECT
             IsCanceled,
@@ -30,7 +30,7 @@ view: hotel_reservation_canceled_explain_predict {
             `eon-internal-bigquery.hotels_sample_dataset.WEATHER_H1_JOINED_DATA`
           WHERE
             ArrivalFullDate BETWEEN '2017-01-01'
-            AND '2017-12-31'))
+            AND '2017-12-31' ))
        ;;
   }
 
@@ -39,26 +39,22 @@ view: hotel_reservation_canceled_explain_predict {
     drill_fields: [detail*]
   }
 
-  dimension: is_canceled {
+  measure: precision {
     type: number
-    sql: ${TABLE}.IsCanceled ;;
+    sql: ${TABLE}.precision ;;
   }
 
-  dimension: predicted_is_canceled {
+  measure: accuracy {
     type: number
-    sql: ${TABLE}.predicted_IsCanceled ;;
+    sql: ${TABLE}.accuracy ;;
   }
 
-  dimension: probability {
+  measure: roc_auc {
     type: number
-    sql: ${TABLE}.probability ;;
-  }
-  measure: general_probability {
-    type: average
-    sql: ${probability} ;;
+    sql: ${TABLE}.roc_auc ;;
   }
 
   set: detail {
-    fields: [is_canceled, predicted_is_canceled, probability]
+    fields: [precision, accuracy, roc_auc]
   }
 }

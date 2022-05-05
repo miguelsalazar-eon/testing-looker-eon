@@ -88,3 +88,5 @@ explore: budget_profit_series {}
 explore: hotel_reservation_canceled_explain_predict {}
 
 explore: hotels_feature_importance{}
+
+explore: hotel_cacelations_explain{}
