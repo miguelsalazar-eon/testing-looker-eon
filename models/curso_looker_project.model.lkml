@@ -75,3 +75,9 @@ explore: budged_and_sales_predict_lr {}
 explore: budget_profit_linear_regression_model {}
 
 explore: budget_profit_linear_regression_predict {}
+
+explore: budget_profit_series {}
+
+explore: hotel_cancelation_feature_importance {}
+
+explore: hotel_cancelation_predict {}
