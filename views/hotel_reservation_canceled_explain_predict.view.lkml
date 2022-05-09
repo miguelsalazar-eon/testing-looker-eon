@@ -34,11 +34,6 @@ view: hotel_reservation_canceled_explain_predict {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-
   dimension: is_canceled {
     type: number
     sql: ${TABLE}.IsCanceled ;;
@@ -49,16 +44,28 @@ view: hotel_reservation_canceled_explain_predict {
     sql: ${TABLE}.predicted_IsCanceled ;;
   }
 
-  dimension: probability {
-    type: number
-    sql: ${TABLE}.probability ;;
-  }
-  measure: general_probability {
-    type: average
-    sql: ${probability} ;;
+  measure: count_real_one {
+    type:  count
+    filters: [is_canceled: "= 1"]
+    drill_fields: [is_canceled]
   }
 
-  set: detail {
-    fields: [is_canceled, predicted_is_canceled, probability]
+  measure: count_real_zero {
+    type:  count
+    filters: [is_canceled: "= 0"]
+    drill_fields: [is_canceled]
   }
+
+  measure: count_predict_one {
+    type:  count
+    filters: [predicted_is_canceled: "= 1"]
+    drill_fields: [predicted_is_canceled]
+  }
+
+  measure: count_predict_zero {
+    type:  count
+    filters: [predicted_is_canceled: "= 0"]
+    drill_fields: [predicted_is_canceled]
+  }
+
 }
