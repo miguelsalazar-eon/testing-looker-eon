@@ -1,13 +1,9 @@
 view: hotels_reservation_cancel_confusion_matrix {
   derived_table: {
     sql: SELECT
-    (CASE
-        WHEN expected_label = 1
-        THEN 'Reservaciones Canceladas'
-        WHEN expected_label = 0 THEN 'Reservaciones no canceladas'
-        END) AS clasificacion,
-      _0 as count_zero,
-      _1 as count_one
+      expected_label,
+      _0,
+      _1
       FROM
         ML.CONFUSION_MATRIX(MODEL `eon-internal-bigquery.hotels_sample_dataset.MY_GBT_MODEL`,
           (
@@ -38,37 +34,22 @@ view: hotels_reservation_cancel_confusion_matrix {
  ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-  measure: sum_zero {
-    label: "Reales"
-    type: sum
-    sql: ${count_zero} ;;
-  }
-  measure: sum_one {
-    label: "Predicción"
-    type: sum
-    sql: ${count_one} ;;
-  }
-
-  dimension: clasificacion {
-    type: string
-    sql: ${TABLE}.clasificacion ;;
-  }
-
-  dimension: count_zero {
+  dimension: expected_label {
     type: number
-    sql: ${TABLE}.count_zero ;;
+    sql: ${TABLE}.expected_label ;;
   }
 
-  dimension: count_one {
+  dimension: label_0 {
     type: number
-    sql: ${TABLE}.count_one ;;
+    sql: ${TABLE}._0 ;;
+  }
+
+  dimension: label_1 {
+    type: number
+    sql: ${TABLE}._1 ;;
   }
 
   set: detail {
-    fields: [clasificacion, count_zero, count_one]
+    fields: [expected_label, label_1, label_0]
   }
 }
