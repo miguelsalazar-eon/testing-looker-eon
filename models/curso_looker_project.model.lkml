@@ -90,3 +90,5 @@ explore: hotel_reservation_canceled_explain_predict {}
 explore: hotels_feature_importance{}
 
 explore: hotel_cacelations_explain{}
+
+explore: hotels_reservation_cancel_confusion_matrix {}
