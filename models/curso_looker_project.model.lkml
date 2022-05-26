@@ -65,6 +65,9 @@ explore: model_arima_evaluate {}
 
 explore: model_explain_forecast_arima {}
 
+
+explore: cotemar_model_explain_forecast_arima {}
+
 ### Bigquery ML AUTOML_REGRESSOR Code
 
 explore: input_data_automl{}
