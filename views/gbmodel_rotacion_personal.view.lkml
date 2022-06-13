@@ -21,12 +21,12 @@ view: gbmodel_rotacion_personal {
 
   dimension: predicted_leaving {
     type: yesno
-    sql: ${TABLE}.predicted_leaving ;;
+    sql: ${TABLE}.predicted_leaving = "true" ;;
   }
 
   dimension: leaving {
     type: yesno
-    sql: ${TABLE}.leaving ;;
+    sql: ${TABLE}.leaving = "true";;
   }
 
   dimension: probability {
