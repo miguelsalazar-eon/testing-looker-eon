@@ -97,3 +97,5 @@ explore: hotel_cacelations_explain{}
 explore: hotels_reservation_cancel_confusion_matrix {}
 
 explore: gbmodel_rotacion_personal {}
+
+explore: gbmodel_rotacion_personal_explain {}
