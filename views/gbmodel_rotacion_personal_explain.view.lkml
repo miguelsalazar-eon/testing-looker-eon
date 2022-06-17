@@ -5,12 +5,7 @@ view: gbmodel_rotacion_personal_explain {
         accuracy,
         roc_auc
       FROM
-        ML.EVALUATE(MODEL `eon-internal-bigquery.POC.TEST_HR_ANALYTICS_TREE_MODEL`,
-          (
-          SELECT
-            *
-          FROM
-            `eon-internal-bigquery.POC.HR_ANALYTICS` ))
+        ML.EVALUATE(MODEL `eon-internal-bigquery.POC.TEST_HR_ANALYTICS_TREE_MODEL`)
        ;;
   }
 
