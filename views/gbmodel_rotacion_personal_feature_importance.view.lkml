@@ -32,9 +32,9 @@ view: gbmodel_rotacion_personal_feature_importance {
     sql: ${TABLE}.importance_cover ;;
   }
 
-  measure: gain {
-    type: number
-    sql: ${importance_gain} ;;
+  measure: percent_gain {
+    type: sum
+    sql: ${importance_gain};;
   }
   set: detail {
     fields: [feature, importance_weight, importance_gain, importance_cover]
