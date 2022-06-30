@@ -59,14 +59,6 @@ view: gbmodel_rotacion_personal {
     sql: ${TABLE}.probability ;;
   }
 
-  dimension: order_list {
-    type:number
-    sql: CASE
-          WHEN ${predicted_leaving} = 'Yes' THEN 1
-          WHEN ${predicted_leaving} = 'No' THEN 2
-        END;;
-  }
-
   set: detail {
     fields: [predicted_leaving, leaving, probability, results]
   }
