@@ -9,11 +9,14 @@ view: cotemar_test_producto1 {
       FROM
       table_result
       WHERE
+      --Redondea a techo los valores que le da a los dias faltantes que arima crea con un promedio de los dias anteriores y siguientes
       ceil(time_series_data) = time_series_data
+      --Solo se aplica el redondeo a los datos historicos
       AND time_series_timestamp <= '2020-12-17'
 
       UNION ALL
 
+      --Se une con los datos sin redondear (son los predichos)
       SELECT
       *
       FROM
