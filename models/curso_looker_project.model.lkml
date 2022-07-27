@@ -103,3 +103,5 @@ explore: gbmodel_rotacion_personal_explain {}
 explore: gbmodel_rotacion_personal_feature_importance {}
 
 explore: cotemar_test_producto1 {}
+
+explore: cotemar_test_producto2 {}

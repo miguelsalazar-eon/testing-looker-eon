@@ -1,7 +1,7 @@
-view: cotemar_test_producto1 {
+view: cotemar_test_producto2 {
   derived_table: {
     sql: WITH table_result as (
-      SELECT * FROM ML.EXPLAIN_FORECAST(MODEL `eon-internal-bigquery.Cotemar.test_producto1`,
+      SELECT * FROM ML.EXPLAIN_FORECAST(MODEL `eon-internal-bigquery.Cotemar.test_producto2`,
                           STRUCT (90 AS horizon, 0.8 AS confidence_level)))
 
       SELECT
@@ -9,14 +9,11 @@ view: cotemar_test_producto1 {
       FROM
       table_result
       WHERE
-      --Redondea a techo los valores que le da a los dias faltantes que arima crea con un promedio de los dias anteriores y siguientes
       ceil(time_series_data) = time_series_data
-      --Solo se aplica el redondeo a los datos historicos
       AND time_series_timestamp <= '2020-12-17'
 
       UNION ALL
 
-      --Se une con los datos sin redondear (son los predichos)
       SELECT
       *
       FROM
@@ -32,23 +29,22 @@ view: cotemar_test_producto1 {
 
   measure: lower_bound {
     type: sum
-    sql: IF(${prediction_interval_lower_bound} < 0, 0, ${prediction_interval_lower_bound}) ;;
-    value_format: "#,##0.00"
+    sql: IF(${prediction_interval_upper_bound} < 0, 0, ${prediction_interval_lower_bound}) ;;
   }
+
   measure: upper_bound {
     type: sum
     sql: IF(${prediction_interval_upper_bound} < 0, 0, ${prediction_interval_upper_bound}) ;;
-    value_format: "#,##0.00"
   }
+
   measure: optimal_data {
     type: sum
-    sql: IF(${time_series_type} = 'forecast' AND ${time_series_data} > 0, ${time_series_data}, 0) ;;
-    value_format: "#,##0.00"
+    sql: IF(${time_series_data} = 'forecast' AND ${time_series_data} > 0, ${time_series_data}, 0) ;;
   }
+
   measure: series_data {
     type: sum
-    sql: IF(${time_series_type} = 'history' AND ${time_series_data} > 0, ${time_series_data}, 0) ;;
-    value_format: "#,##0.00"
+    sql: IF(${time_series_data} = 'history' AND ${time_series_data} > 0, ${time_series_data}, 0) ;;
   }
 
   dimension_group: time_series_timestamp {
