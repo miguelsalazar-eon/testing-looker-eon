@@ -1,9 +1,13 @@
-view: cotemar_test_producto2 {
+view: cotemar_test_producto3 {
   derived_table: {
     sql:
-      SELECT * FROM ML.EXPLAIN_FORECAST(MODEL `eon-internal-bigquery.Cotemar.test_producto2`,
-                          STRUCT (90 AS horizon, 0.8 AS confidence_level))
-      ;;
+        SELECT
+          *
+        FROM
+          ML.EXPLAIN_FORECAST(MODEL `eon-internal-bigquery.Cotemar.test_producto_melon`,
+            STRUCT (90 AS horizon,
+              0.8 AS confidence_level))
+       ;;
   }
 
   measure: count {
