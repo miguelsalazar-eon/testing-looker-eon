@@ -102,8 +102,12 @@ explore: gbmodel_rotacion_personal_explain {}
 
 explore: gbmodel_rotacion_personal_feature_importance {}
 
+### Bigquery ML Arima Plus Code for Cotenmar
+
 explore: cotemar_test_producto1 {}
 
 explore: cotemar_test_producto2 {}
 
 explore: cotemar_test_producto3 {}
+
+explore: cotemar_comparacion {}
